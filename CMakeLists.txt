@@ -20,7 +20,7 @@ catkin_package(
 ## Build talker and listener
 include_directories(include ${catkin_INCLUDE_DIRS})
 
-add_executable(walker_node src/walker.cpp src/walker_node.cpp)
+add_executable(walker_node src/walker.cpp src/obstacle_detector.cpp src/walker_node.cpp )
 target_link_libraries(walker_node ${catkin_LIBRARIES})
 
 
