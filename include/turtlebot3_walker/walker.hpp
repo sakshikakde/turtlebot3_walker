@@ -30,8 +30,8 @@
  * @copyright Copyright (c) 2021
  * 
  */
-#ifndef INCLUDE_BEGINNER_TUTORIALS_TALKER_HPP_
-#define INCLUDE_BEGINNER_TUTORIALS_TALKER_HPP_
+#ifndef INCLUDE_TURTLEBOT3_WALKER_WALKER_HPP_
+#define INCLUDE_TURTLEBOT3_WALKER_WALKER_HPP_
 
 #include <ros/ros.h>
 #include <sensor_msgs/LaserScan.h>
@@ -67,7 +67,8 @@ class Walker {
     ros::NodeHandle* nh_p;  // nodehandle
 
  private:
-    std::string publisher_topic_name, subscriber_topic_name;  // ROS publisher topic name
+    std::string publisher_topic_name,
+                subscriber_topic_name;  // ROS publisher topic name
     int scan_range_param;
     float distance_threshold;
     ros::Publisher cmd_vel_pub;  // ROS publisher object
@@ -93,4 +94,4 @@ class Walker {
 
     geometry_msgs::Twist processScan(const sensor_msgs::LaserScan& scan);
 };
-#endif  // INCLUDE_BEGINNER_TUTORIALS_TALKER_HPP_
+#endif  // INCLUDE_TURTLEBOT3_WALKER_WALKER_HPP_
