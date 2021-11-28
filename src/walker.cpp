@@ -37,6 +37,7 @@ Walker::Walker() {
 
 Walker::Walker(ros::NodeHandle* nh_p) {
     this->nh_p = nh_p;
+    obstacle_detector = std::make_unique<ObstacleDetector>();
     initParams();
     initPublishers();
     initSubscriber();
@@ -80,13 +81,16 @@ void Walker::scanCallback(const sensor_msgs::LaserScan::ConstPtr& msg) {
 
 geometry_msgs::Twist Walker::processScan(const sensor_msgs::LaserScan& scan) {
   geometry_msgs::Twist vel;
-  bool obstacle_present = false;
-  for (int i = 0; i < this->scan_range_param; i++) {
-    if ((scan.ranges[i] <= this->distance_threshold)||
-        (scan.ranges[359-i] <= this->distance_threshold)) {
-      obstacle_present = true;
-    }
-  }
+  bool obstacle_present = this->obstacle_detector->obstaclePresent(scan,
+                          this->scan_range_param,
+                          this->distance_threshold);
+  // bool obstacle_present = false;
+  // for (int i = 0; i < this->scan_range_param; i++) {
+  //   if ((scan.ranges[i] <= this->distance_threshold)||
+  //       (scan.ranges[359-i] <= this->distance_threshold)) {
+  //     obstacle_present = true;
+  //   }
+  // }
 
   if (obstacle_present) {
       ROS_WARN_STREAM("OBSTACLE PRESENT");
