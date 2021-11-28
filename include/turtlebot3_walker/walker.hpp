@@ -39,6 +39,8 @@
 #include <std_msgs/String.h>
 #include <sstream>
 #include <string>
+#include <memory>
+#include <turtlebot3_walker/obstacle_detector.hpp>
 
 
 class Walker {
@@ -73,6 +75,7 @@ class Walker {
     float distance_threshold;
     ros::Publisher cmd_vel_pub;  // ROS publisher object
     int publisher_rate;  // rate of publishing
+    std::unique_ptr<ObstacleDetector> obstacle_detector;
     /**
      * @brief Function to init params
      * 
@@ -89,9 +92,18 @@ class Walker {
      * 
      */
     void initSubscriber();
-
+    /**
+     * @brief Callback for scan subscriber
+     * 
+     * @param msg 
+     */
     void scanCallback(const sensor_msgs::LaserScan::ConstPtr& msg);
-
+    /**
+     * @brief Function to detect obstacle from scan
+     * 
+     * @param scan 
+     * @return geometry_msgs::Twist 
+     */
     geometry_msgs::Twist processScan(const sensor_msgs::LaserScan& scan);
 };
 #endif  // INCLUDE_TURTLEBOT3_WALKER_WALKER_HPP_

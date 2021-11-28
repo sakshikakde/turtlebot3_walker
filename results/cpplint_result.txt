@@ -1,3 +1,5 @@
+Done processing ./include/turtlebot3_walker/obstacle_detector.hpp
 Done processing ./include/turtlebot3_walker/walker.hpp
+Done processing ./src/obstacle_detector.cpp
 Done processing ./src/walker.cpp
 Done processing ./src/walker_node.cpp
