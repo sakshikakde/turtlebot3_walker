@@ -89,9 +89,18 @@ class Walker {
      * 
      */
     void initSubscriber();
-
+    /**
+     * @brief Callback for scan subscriber
+     * 
+     * @param msg 
+     */
     void scanCallback(const sensor_msgs::LaserScan::ConstPtr& msg);
-
+    /**
+     * @brief Function to detect obstacle from scan
+     * 
+     * @param scan 
+     * @return geometry_msgs::Twist 
+     */
     geometry_msgs::Twist processScan(const sensor_msgs::LaserScan& scan);
 };
 #endif  // INCLUDE_TURTLEBOT3_WALKER_WALKER_HPP_
