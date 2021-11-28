@@ -94,3 +94,6 @@ rosbag play <bagfile_name> --pause
 ```
 roslaunch turtlebot3_walker turtlebot3_obstacle_avoidance.launch launch_gazebo:=false
 ```
+
+## Bag file
+https://drive.google.com/file/d/1rZaai8yFOqWnMEujxXBu6TGUDE9_OtfZ/view?usp=sharing
