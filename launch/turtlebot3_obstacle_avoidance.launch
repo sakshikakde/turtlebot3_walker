@@ -8,10 +8,12 @@
     <arg name="distance_threshold" default="1" />
     <arg name="bags_directory" default="/home"/>
     <arg name="record_bag" default="false" />
+    <arg name="launch_gazebo" default="true" />
+   
+    
+    <include file="$(find turtlebot3_gazebo)/launch/turtlebot3_house.launch" if="$(arg launch_gazebo)"/> 
 
-    <include file="$(find turtlebot3_gazebo)/launch/turtlebot3_house.launch"/> 
-
-    <group>
+    <group> 
     	<node pkg="turtlebot3_walker" type="walker_node" name="walker_node_$(arg platform_name)">
             <param name="publisher_topic_name" value="$(arg publisher_topic_name)"/>
             <param name="subscriber_topic_name" value="$(arg subscriber_topic_name)"/>
