@@ -6,7 +6,7 @@
     <arg name="subscriber_topic_name" default="/scan" />
     <arg name="scan_range" default="10" />
     <arg name="distance_threshold" default="1" />
-    <arg name="bags_directory" default="/home"/>
+    <arg name="bags_directory" default="/home/sakshi"/>
     <arg name="record_bag" default="false" />
     <arg name="launch_gazebo" default="true" />
    
@@ -26,7 +26,7 @@
 
     <group if="$(arg record_bag)">
         <node pkg="rosbag" type="record" name="record"
-            args="record -o $(arg bags_directory)/bag -a"/> 
+            args="record -a -x '(.*)/camera(.*)'"/> 
     </group>
  
 </launch>
