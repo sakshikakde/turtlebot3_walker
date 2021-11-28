@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="platform_name" default="turtlebot3" />
+    <arg name="publisher_topic_name" default="/cmd_vel" />
+    <arg name="publisher_rate" default="20" />
+    <arg name="subscriber_topic_name" default="/scan" />
+    <arg name="scan_range" default="10" />
+    <arg name="distance_threshold" default="1" />
+    <arg name="bags_directory" default="/home"/>
+    <arg name="record_bag" default="false" />
+
+    <include file="$(find turtlebot3_gazebo)/launch/turtlebot3_house.launch"/> 
+
+    <group>
+    	<node pkg="turtlebot3_walker" type="walker_node" name="walker_node_$(arg platform_name)">
+            <param name="publisher_topic_name" value="$(arg publisher_topic_name)"/>
+            <param name="subscriber_topic_name" value="$(arg subscriber_topic_name)"/>
+            <param name="publisher_rate" value="$(arg publisher_rate)"/>
+            <param name="scan_range" value="$(arg scan_range)"/>
+            <param name="distance_threshold" value="$(arg distance_threshold)"/>
+        </node>
+	</group>
+
+
+    <group if="$(arg record_bag)">
+        <node pkg="rosbag" type="record" name="record"
+            args="record -o $(arg bags_directory)/bag -a"/> 
+    </group>
+ 
+</launch>
