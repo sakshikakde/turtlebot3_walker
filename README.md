@@ -14,7 +14,11 @@ This repository provides a simple for obstacle avoidance
     
 
 walker_node.cpp is  where the object for the classes Walker is created.
-
+## Prerequisites 
+1) sudo apt-get install ros-melodic-urdf
+2) sudo apt-get install ros-melodic-interactive-markers
+3) sudo apt-get install ros-melodic-actionlib
+4
 ## Building the package
 1) Create a catkin workspace catkin_ws
 
